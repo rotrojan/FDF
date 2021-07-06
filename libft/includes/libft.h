@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:04:05 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/21 16:39:06 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/06 20:46:29 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void			*ft_realloc(void *ptr, size_t size);
 */
 
 char			*ft_substr(char const *s, unsigned int start, size_t len);
-char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin(char const *s1, char const *s2, char const *sep);
 char			*ft_strtrim(char const *s1, char const *set);
-char			**ft_split(char const *s, char c);
+char			**ft_split(char const *s, char *charset);
 char			**ft_split_whitespaces(char const *s);
 char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -75,6 +75,13 @@ void			ft_putnbr_fd(int n, int fd);
 void			ft_swap(double *a, double *b);
 int				get_next_line(int fd, char **line);
 void			ft_memdel(void **ptr);
+
+/*
+** Others.
+*/
+
+unsigned int	count_words(char const *str, char *charset);
+int				is_charset(int c, char const *str);
 
 /*
 ** Chained linked lists functions.

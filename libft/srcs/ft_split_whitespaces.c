@@ -6,42 +6,18 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 19:31:28 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/21 11:56:12 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/06 19:51:05 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#define WHITESPACES " \t\n\v\f\r"
 
-static int	count_words(char const *str)
+static void	skip_separators(char const *str, int *i, char *charset)
 {
-	int	nb_words;
-	int	state_in_word;
-	int	i;
-
-	i = 0;
-	nb_words = 0;
-	state_in_word = 0;
-	while (str[i])
-	{
-		if (state_in_word == 0)
-		{
-			if (!ft_isspace(str[i]))
-			{
-				++nb_words;
-				state_in_word = 1;
-			}
-		}
-		else
-			if (ft_isspace(str[i]))
-				state_in_word = 0;
-		++i;
-	}
-	return (nb_words);
-}
-
-static void	skip_separators(char const *str, int *i)
-{
-	while (ft_isspace(str[*i]))
+	if (*charset == '\0')
+		return ;
+	while (is_charset(str[*i], charset) == 1)
 		++(*i);
 }
 
@@ -83,7 +59,7 @@ char	**ft_split_whitespaces(char const *str)
 	int		nb_words;
 
 	word_array = NULL;
-	nb_words = count_words(str);
+	nb_words = count_words(str, WHITESPACES);
 	word_array = malloc(sizeof(*word_array) * (nb_words + 1));
 	if (word_array == NULL)
 		return (word_array);
@@ -91,14 +67,14 @@ char	**ft_split_whitespaces(char const *str)
 	while (i <= nb_words)
 		word_array[i++] = NULL;
 	i = 0;
-	skip_separators(str, &i);
+	skip_separators(str, &i, WHITESPACES);
 	j = 0;
 	while (j < nb_words)
 	{
 		word_array[j] = get_word(str, &i);
 		if (word_array[j] == NULL)
 			return (malloc_failure(word_array, j));
-		skip_separators(str, &i);
+		skip_separators(str, &i, WHITESPACES);
 		++j;
 	}
 	return (word_array);

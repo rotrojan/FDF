@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 22:34:29 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/06 17:34:19 by rotrojan         ###   ########.fr       */
+/*   Created: 2021/07/06 13:49:05 by rotrojan          #+#    #+#             */
+/*   Updated: 2021/07/06 20:35:48 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-size_t	ft_strlen(char const *s)
+int	return_error(t_error error)
 {
-	size_t		size;
+	static char	*error_messages[] = {
+		NULL,
+		OPENING_ERROR_MSG,
+		OPENING_DIR_ERROR_MSG,
+		MAP_EXTENSION_ERROR_MSG,
+		READ_ERROR_MSG,
+		READING_ERROR_MSG,
+		MALLOC_ERROR_MSG,
+		MAP_ERROR_MSG
+	};
 
-	size = 0;
-	while (*(s + size))
-		++size;
-	return (size);
+	ft_dprintf(STDERR_FILENO, "Error\n%s\n", error_messages[error]);
+	return (EXIT_FAILURE);
 }

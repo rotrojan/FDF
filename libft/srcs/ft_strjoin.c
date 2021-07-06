@@ -6,34 +6,46 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 23:11:55 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/20 22:55:44 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/06 19:58:47 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static char	*return_one_string(char const *s1, char const *s2)
+{
+	if (s1 == NULL && s2 != NULL)
+		return (ft_strdup(s2));
+	else if (s1 != NULL && s2 == NULL)
+		return (ft_strdup(s1));
+	else
+		return (NULL);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2, char const *sep)
 {
 	char	*str;
 	char	*tmp;
 
-	if (!s1)
+	if (s1 == NULL || s2 == NULL)
+		str = return_one_string(s1, s2);
+	else
 	{
-		if (!s2)
+		str = NULL;
+		ft_strlen(s1);
+		str = malloc(sizeof(*str) * (ft_strlen(s1) + ft_strlen(s2)
+					+ ft_strlen(sep) + 1));
+		if (str == NULL)
 			return (NULL);
-		return (ft_strdup(s2));
+		tmp = str;
+		while (*s1)
+			*tmp++ = *s1++;
+		if (sep != NULL)
+			while (*sep)
+				*tmp++ = *sep++;
+		while (*s2)
+			*tmp++ = *s2++;
+		*tmp = '\0';
 	}
-	if (!s2)
-		return (ft_strdup(s1));
-	str = NULL;
-	str = malloc((sizeof(*tmp) * (ft_strlen(s1) + ft_strlen(s2) + 1)));
-	if (str == NULL)
-		return (NULL);
-	tmp = str;
-	while (*s1)
-		*tmp++ = *s1++;
-	while (*s2)
-		*tmp++ = *s2++;
-	*tmp = '\0';
 	return (str);
 }

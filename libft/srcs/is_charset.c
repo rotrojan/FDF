@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   is_charset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 19:38:48 by user42            #+#    #+#             */
-/*   Updated: 2021/07/06 20:00:15 by rotrojan         ###   ########.fr       */
+/*   Created: 2021/07/06 19:27:24 by rotrojan          #+#    #+#             */
+/*   Updated: 2021/07/06 19:36:37 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "ft_printf.h"
-# include "ft_bool.h"
-# include "error_management.h"
-# include "map.h"
-# include "parsing.h"
+int	is_charset(int c, char const *charset)
+{
+	unsigned int	i;
 
-#endif
+	i = 0;
+	while (charset[i] != '\0')
+	{
+		if (charset[i] == c)
+			return (1);
+		++i;
+	}
+	return (0);
+}
