@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 20:10:27 by user42            #+#    #+#             */
-/*   Updated: 2021/07/06 21:11:26 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/06 22:22:53 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ t_bool	check_line(char const *line)
 	unsigned int	i;
 
 	i = 0;
+	while (ft_isspace(line[i]) == 1)
+		++i;
 	while (line[i] != '\0')
 	{
-		while (ft_isspace(line[i]) == 1)
-			++i;
 		if (line[i] == '+' || line[i] == '-')
 			++i;
 		if (ft_isdigit(line[i]) == 0)
@@ -45,6 +45,8 @@ t_bool	check_line(char const *line)
 			++i;
 		if (ft_isspace(line[i]) == 0 && line[i] != '\0')
 			return (FALSE);
+		while (ft_isspace(line[i]) == 1)
+			++i;
 	}
 	return (TRUE);
 }
@@ -77,27 +79,19 @@ char	*read_map(int fd)
 	int		ret_gnl;
 	char	*map_str;
 	char	*line_map;
-	char	*tmp;
 
 	map_str = NULL;
 	line_map = NULL;
-	tmp = NULL;
 	ret_gnl = get_next_line(fd, &line_map);
-	ft_printf("yolo\n");
 	while (ret_gnl > 0)
 	{
-		tmp = map_str;
-		map_str = ft_strjoin(map_str, line_map, "\n");
-		ft_memdel((void **)(&tmp));
+		map_str = ft_strjoin_free(map_str, line_map, "\n");
 		if (map_str == NULL)
 			return (NULL);
 		ret_gnl = get_next_line(fd, &line_map);
 	}
 	if (ret_gnl == -1)
-	{
-		ft_memdel((void **)(&tmp));
-		return (NULL);
-	}
+		ft_memdel((void **)(&map_str));
 	return (map_str);
 }
 
@@ -130,7 +124,6 @@ t_error	parse_map(int fd, t_map *map)
 	error = check_map(map_str_array, map);
 	if (error != NO_ERROR)
 		return (error);
-	/* (void)map; */
 	free_array(((void **)map_str_array));
 	return (NO_ERROR);
 }

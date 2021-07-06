@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:04:05 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/06 20:46:29 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/06 22:14:04 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void			*ft_realloc(void *ptr, size_t size);
 
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2, char const *sep);
+char			*ft_strjoin_free(char *s1, char *s2, char const *sep);
 char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *s, char *charset);
 char			**ft_split_whitespaces(char const *s);

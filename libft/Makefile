@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 02:53:19 by rotrojan          #+#    #+#              #
-#    Updated: 2021/07/06 21:16:21 by rotrojan         ###   ########.fr        #
+#    Updated: 2021/07/06 22:13:43 by rotrojan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS 			=	ft_memset.c									\
 					ft_isspace.c								\
 					ft_substr.c									\
 					ft_strjoin.c								\
+					ft_strjoin_free.c							\
 					ft_strtrim.c								\
 					ft_split.c									\
 					ft_split_whitespaces.c						\
