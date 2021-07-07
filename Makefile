@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/07/06 21:16:56 by rotrojan         ###   ########.fr        #
+#    Updated: 2021/07/07 16:22:36 by rotrojan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ OBJS_DIR = .objs
 
 NAME = fdf
 SRCS = main.c \
-	   error_management.c \
-	   parsing_utils.c \
-	   parsing.c
+	error_management.c \
+	parsing_utils.c \
+	utils.c \
+	parsing.c
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 DEPENDENCIES = $(OBJS:%.o=%.d)
 

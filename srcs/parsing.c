@@ -6,72 +6,51 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 20:10:27 by user42            #+#    #+#             */
-/*   Updated: 2021/07/06 22:22:53 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/07 17:48:10 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#define WHITESPACES " \t\n\v\f\r"
 
-void	free_array(void **array)
+int	*get_map_line(char *map_line_str, unsigned int width)
 {
+	int				*map_line;
 	unsigned int	i;
+	unsigned int	j;
 
+	map_line = NULL;
+	map_line = malloc(sizeof(*map_line) * width);
+	if (map_line == NULL)
+		return (NULL);
 	i = 0;
-	while (array[i] != NULL)
+	j = 0;
+	while (i < width)
 	{
-		free((array[i]));
-		array[i] = NULL;
+		map_line[i] = ft_atoi(&map_line_str[i]);
+		while (ft_isspace(map_line_str[j]) == 1)
+			++j;
+		while (ft_isspace(map_line_str[j]) == 0)
+			++j;
 		++i;
 	}
-	free(*array);
-	array = NULL;
+	return (map_line);
 }
 
-t_bool	check_line(char const *line)
+t_map	*get_map(char **map_str_array, t_map *map)
 {
 	unsigned int	i;
 
+	map->data = NULL;
+	map->data = malloc(sizeof(*map) * map->height);
+	if (map->data == NULL)
+		return (NULL);
 	i = 0;
-	while (ft_isspace(line[i]) == 1)
-		++i;
-	while (line[i] != '\0')
+	while (i < map->height)
 	{
-		if (line[i] == '+' || line[i] == '-')
-			++i;
-		if (ft_isdigit(line[i]) == 0)
-			return (FALSE);
-		while (ft_isdigit(line[i]) == 1)
-			++i;
-		if (ft_isspace(line[i]) == 0 && line[i] != '\0')
-			return (FALSE);
-		while (ft_isspace(line[i]) == 1)
-			++i;
-	}
-	return (TRUE);
-}
-
-t_error	check_map(char **map_str_array, t_map *map)
-{
-	unsigned int	nb_lines;
-	unsigned int	nb_columns;
-	unsigned int	i;
-
-	nb_lines = 0;
-	while (map_str_array[nb_lines] != NULL)
-		++nb_lines;
-	nb_columns = count_words(*map_str_array, WHITESPACES);
-	i = 0;
-	while (map_str_array[i] != NULL)
-	{
-		if (check_line(map_str_array[i]) == FALSE)
-			return (MAP_ERROR);
-		if (count_words(map_str_array[i], WHITESPACES) != nb_columns)
-			return (MAP_ERROR);
+		map->data[i] = get_map_line(map_str_array[i], map->width);
 		++i;
 	}
-	(void)map;
-	return (NO_ERROR);
+	return (map);
 }
 
 char	*read_map(int fd)
@@ -95,24 +74,10 @@ char	*read_map(int fd)
 	return (map_str);
 }
 
-void	print_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i] != NULL)
-	{
-		ft_printf("%s\n", array[i]);
-		++i;
-	}
-	ft_printf("%p\n", array[i]);
-}
-
 t_error	parse_map(int fd, t_map *map)
 {
-	char	*map_str;
-	char	**map_str_array;
-	t_error	error;
+	char			*map_str;
+	char			**map_str_array;
 
 	map_str = read_map(fd);
 	if (map_str == NULL)
@@ -120,10 +85,11 @@ t_error	parse_map(int fd, t_map *map)
 	map_str_array = ft_split(map_str, "\n");
 	if (map_str_array == NULL)
 		return (MALLOC_ERROR);
-	print_array(map_str_array);
-	error = check_map(map_str_array, map);
-	if (error != NO_ERROR)
-		return (error);
+	if (check_map(map_str_array, map) == FALSE)
+		return (MAP_ERROR);
+	map = get_map(map_str_array, map);
+	if (map == NULL)
+		return (MALLOC_ERROR);
 	free_array(((void **)map_str_array));
 	return (NO_ERROR);
 }

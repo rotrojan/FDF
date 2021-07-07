@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 14:30:23 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/07 17:40:44 by rotrojan         ###   ########.fr       */
+/*   Created: 2021/07/07 16:02:29 by rotrojan          #+#    #+#             */
+/*   Updated: 2021/07/07 17:49:48 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "fdf.h"
 
-# include "fdf.h"
+void	free_array(void **array)
+{
+	unsigned int	i;
 
-/*
-** parsing_utils.c
-*/
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free((array[i]));
+		array[i] = NULL;
+		++i;
+	}
+	free(*array);
+	array = NULL;
+}
 
-t_error	check_fdf_file(char const *pathnmame, int *fd);
-t_bool	check_map(char **map_str_array, t_map *map);
+void	free_map(t_map *map)
+{
+	unsigned int	i;
 
-/*
-** parsing.c
-*/
-
-t_error	parse_map(int fd, t_map *map);
-
-/*
-** utils.c
-*/
-
-void	free_array(void **array);
-void	free_map(t_map *map);
-
-#endif
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->data[i]);
+		map->data[i] = NULL;
+		++i;
+	}
+	free(map->data);
+	map = NULL;
+}

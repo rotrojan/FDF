@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 19:42:15 by user42            #+#    #+#             */
-/*   Updated: 2021/07/06 17:12:06 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/07 17:49:13 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	display_usage(void)
 	return (EXIT_FAILURE);
 }
 
+#include "../test_functions.c"
+
 int	main(int ac, char **av)
 {
 	t_error	error;
@@ -30,12 +32,15 @@ int	main(int ac, char **av)
 	error = check_fdf_file(av[1], &fd);
 	if (error != NO_ERROR)
 		return (return_error(error));
+	ft_bzero(&map, sizeof(map));
 	error = parse_map(fd, &map);
 	if (error != NO_ERROR)
 	{
-		/* free_map(); */
+		free_map(&map);
 		return (return_error(error));
 	}
+	print_array_int(&map);
+	free_map(&map);
 	/* init_mlx(); */
 	/* display_projection(); */
 	return (EXIT_SUCCESS);
