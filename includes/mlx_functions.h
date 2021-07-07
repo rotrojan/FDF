@@ -1,43 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   mlx_functions.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 16:02:29 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/07 18:52:02 by user42           ###   ########.fr       */
+/*   Created: 2020/02/23 18:13:01 by rotrojan          #+#    #+#             */
+/*   Updated: 2021/03/17 21:36:04 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef MLX_FUNCTIONS_H
+# define MLX_FUNCTIONS_H
+# include "minirt.h"
 
-void	free_array(void **array)
-{
-	unsigned int	i;
+/*
+** mlx_utils.c
+*/
 
-	i = 0;
-	while (array[i] != NULL)
-	{
-		free((array[i]));
-		array[i] = NULL;
-		++i;
-	}
-	free(array);
-	array = NULL;
-}
+void	init_mlx(t_mlx *mlx);
+int		close_mlx(t_main *main);
+int		run_window(t_main *main);
+void	put_pixel(t_mlx *mlx, unsigned int x, unsigned int y, t_color color);
+t_bool	run_mlx(t_main *main);
 
-void	free_map(t_map *map)
-{
-	unsigned int	i;
+/*
+** mlx_hooks.c
+*/
 
-	i = 0;
-	while (i < map->height)
-	{
-		free(map->data[i]);
-		map->data[i] = NULL;
-		++i;
-	}
-	free(map->data);
-	map->data = NULL;
-}
+int		set_mlx_hooks(t_main *main);
+
+#endif

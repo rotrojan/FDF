@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 19:42:15 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 17:49:13 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/07 22:52:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ int	main(int ac, char **av)
 	error = parse_map(fd, &map);
 	if (error != NO_ERROR)
 	{
-		free_map(&map);
+		if (map.data != NULL)
+			free_map(&map);
 		return (return_error(error));
 	}
 	print_array_int(&map);
-	free_map(&map);
-	/* init_mlx(); */
+	init_mlx();
 	/* display_projection(); */
+	free_map(&map);
 	return (EXIT_SUCCESS);
 }

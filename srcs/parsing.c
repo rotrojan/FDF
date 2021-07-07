@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 20:10:27 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 17:48:10 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/07 19:42:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	*get_map_line(char *map_line_str, unsigned int width)
 	while (i < width)
 	{
 		map_line[i] = ft_atoi(&map_line_str[i]);
-		while (ft_isspace(map_line_str[j]) == 1)
+		while (ft_isspace(map_line_str[j]) == 1 && map_line_str[j] != '\0')
 			++j;
-		while (ft_isspace(map_line_str[j]) == 0)
+		while (ft_isspace(map_line_str[j]) == 0 && map_line_str[j] != '\0')
 			++j;
 		++i;
 	}
@@ -69,6 +69,7 @@ char	*read_map(int fd)
 			return (NULL);
 		ret_gnl = get_next_line(fd, &line_map);
 	}
+	ft_memdel((void **)&line_map);
 	if (ret_gnl == -1)
 		ft_memdel((void **)(&map_str));
 	return (map_str);
@@ -83,13 +84,17 @@ t_error	parse_map(int fd, t_map *map)
 	if (map_str == NULL)
 		return (READING_ERROR);
 	map_str_array = ft_split(map_str, "\n");
+	ft_memdel((void **)&map_str);
 	if (map_str_array == NULL)
 		return (MALLOC_ERROR);
 	if (check_map(map_str_array, map) == FALSE)
+	{
+		free_array(((void **)map_str_array));
 		return (MAP_ERROR);
+	}
 	map = get_map(map_str_array, map);
+	free_array(((void **)map_str_array));
 	if (map == NULL)
 		return (MALLOC_ERROR);
-	free_array(((void **)map_str_array));
 	return (NO_ERROR);
 }

@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/07/07 16:22:36 by rotrojan         ###   ########.fr        #
+#    Updated: 2021/07/07 22:46:38 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +28,22 @@ RM = rm -f
 
 LIBS = ft
 
+MLX_DIR = minilibx-linux
+
 CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/
 LDFLAGS = -L libft/ -lft
 
-vpath %.c $(addprefix $(SRCS_DIR), /. /checker)
+vpath %.c $(addprefix $(SRCS_DIR), /. /mlx)
 vpath %.a $(LIBS:%=lib%)
 
 all:
 	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
+	$(MAKE) -C $(MLX_DIR) 2> /dev/null
 	$(MAKE) $(NAME)
 
 $(NAME): $(OBJS) $(LIBS:%=lib%.a)
 	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
+	$(MAKE) -C $(MLX_DIR) 2> /dev/null
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 lib%.a:
@@ -55,6 +59,7 @@ $(OBJS_DIR):
 clean:
 	$(RM) -r $(OBJS_DIR)
 	$(foreach LIB, $(LIBS), $(MAKE) clean -C lib$(LIB) ;)
+	$(MAKE) clean -C $(MLX_DIR) 2> /dev/null
 
 fclean: clean
 	$(RM) $(NAME)

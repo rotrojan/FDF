@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 21:46:11 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/06 19:48:31 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/07 22:23:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,13 @@ char	**ft_split(char const *str, char *charset)
 	while (i <= nb_words)
 		word_array[i++] = NULL;
 	i = 0;
-	skip_separators(str, &i, charset);
 	j = 0;
 	while (j < nb_words)
 	{
+		skip_separators(str, &i, charset);
 		word_array[j] = get_word(str, &i, charset);
 		if (word_array[j] == NULL)
 			return (malloc_failure(word_array, j));
-		skip_separators(str, &i, charset);
 		++j;
 	}
 	return (word_array);
