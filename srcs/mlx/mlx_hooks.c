@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:26:38 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/07 23:21:09 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/27 18:36:55 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,26 @@
 ** the new image.
 */
 
-static void	switch_cam(t_main *main)
-{
-	ft_bzero(main->mlx.data, main->mlx.win_width * main->mlx.win_height * 4);
-	main->scene.cam_lst = main->scene.cam_lst->next;
-	ray_tracer(main);
-	mlx_put_image_to_window(main->mlx.mlx_ptr, main->mlx.win_ptr,
-		main->mlx.img_ptr, 0, 0);
-}
+/* static void	switch_cam(t_main *main) */
+/* { */
+	/* ft_bzero(main->mlx.data, main->mlx.win_width * main->mlx.win_height * 4); */
+	/* main->scene.cam_lst = main->scene.cam_lst->next; */
+	/* ray_tracer(main); */
+	/* mlx_put_image_to_window(main->mlx.mlx_ptr, main->mlx.win_ptr, */
+		/* main->mlx.img_ptr, 0, 0); */
+/* } */
 
 /*
 ** Launch the function corresponding to the received event.
 */
 
-static int	key_hook(int key, t_main *main)
+static int	key_hook(int key, t_mlx *mlx)
 {
 	if (key == XK_Escape)
-		close_mlx(main);
-	if (key == XK_space)
-		switch_cam(main);
-	if (!run_mlx(main))
-		return (return_error(MLX_HOOKS_ERR));
+		close_mlx(mlx);
+	/* if (key == XK_space) */
+		/* switch_cam(mlx); */
+	/* run_mlx(mlx); */
 	return (0);
 }
 
@@ -47,17 +46,10 @@ static int	key_hook(int key, t_main *main)
 ** "documentation" ... and try not to cry.
 */
 
-int			set_mlx_hooks(t_mlx *mlx)
+void			set_mlx_hooks(t_mlx *mlx)
 {
-	if (!(mlx_hook(mlx->win_ptr, ClientMessage, StructureNotifyMask, &close_mlx,
-		main)))
-		return (1);
-	if (!(mlx_hook(mlx->win_ptr, VisibilityNotify, VisibilityChangeMask,
-		&run_window, main)))
-		return (1);
-	if (!(mlx_key_hook(mlx->win_ptr, &key_hook, main)))
-		return (1);
-	if (!(mlx_loop_hook(mlx->win_ptr, NULL, NULL)))
-		return (1);
-	return (0);
+	mlx_hook(mlx->win_ptr, ClientMessage, StructureNotifyMask, &close_mlx, mlx);
+	mlx_hook(mlx->win_ptr, VisibilityNotify, VisibilityChangeMask, &run_window,
+		mlx);
+	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &key_hook, mlx);
 }

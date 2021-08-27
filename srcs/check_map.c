@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-static t_bool	check_line(char const *line)
+static t_t_t_bool	check_line(char const *line)
 {
 	unsigned int	i;
 
@@ -35,7 +35,7 @@ static t_bool	check_line(char const *line)
 	return (TRUE);
 }
 
-t_bool	check_map(char **map_str_array,
+t_t_t_bool	check_map(char **map_str_array,
 		unsigned int *nb_lines, unsigned int *nb_columns)
 {
 	unsigned int	i;

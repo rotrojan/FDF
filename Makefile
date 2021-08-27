@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/07/07 22:46:38 by user42           ###   ########.fr        #
+#    Updated: 2021/08/25 15:25:45 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,11 @@ SRCS = main.c \
 	error_management.c \
 	parsing_utils.c \
 	utils.c \
-	parsing.c
+	parsing.c \
+	mlx_hooks.c \
+	mlx_utils.c \
+	display_projection.c
+
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 DEPENDENCIES = $(OBJS:%.o=%.d)
 
@@ -30,11 +34,11 @@ LIBS = ft
 
 MLX_DIR = minilibx-linux
 
-CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/
-LDFLAGS = -L libft/ -lft
+CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/ -I $(MLX_DIR)
+LDFLAGS = -L libft/ -lft -L $(MLX_DIR) -lmlx -lXext -lX11
 
 vpath %.c $(addprefix $(SRCS_DIR), /. /mlx)
-vpath %.a $(LIBS:%=lib%)
+vpath %.a $(LIBS:%=lib%) minilibx-$(MLX_DIR)
 
 all:
 	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)

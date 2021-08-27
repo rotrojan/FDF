@@ -6,12 +6,11 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 19:42:15 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 22:52:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/27 18:51:32 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 
 int	display_usage(void)
 {
@@ -19,13 +18,15 @@ int	display_usage(void)
 	return (EXIT_FAILURE);
 }
 
-#include "../test_functions.c"
+/* #include "../test_functions.c" */
 
 int	main(int ac, char **av)
 {
 	t_error	error;
 	int		fd;
 	t_map	map;
+	t_mlx	mlx;
+
 
 	if (ac != 2)
 		return (display_usage());
@@ -40,9 +41,9 @@ int	main(int ac, char **av)
 			free_map(&map);
 		return (return_error(error));
 	}
-	print_array_int(&map);
-	init_mlx();
-	/* display_projection(); */
+	mlx = *get_mlx();
+	init_mlx(&mlx);
+	display_projection(map, &mlx);
 	free_map(&map);
 	return (EXIT_SUCCESS);
 }

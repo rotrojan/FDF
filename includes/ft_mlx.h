@@ -6,14 +6,14 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 22:26:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 23:04:07 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/25 17:18:06 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MLX_H
 # define FT_MLX_H
 
-#define TITLE fdf
+#define TITLE "fdf"
 #define WIDTH 800 
 #define HEIGHT 600 
 
@@ -23,36 +23,44 @@
 ** the array of pixels of the resulting image.
 */
 
-typedef struct		s_mlx
+typedef struct	s_mlx
 {
-	unsigned int		win_width;
-	unsigned int		win_height;
-	int					screen_width;
-	int					screen_height;
-	void				*mlx_ptr;
-	void				*win_ptr;
-	void				*img_ptr;
-	int					*data;
-	int					size_line;
-	int					bits_per_pixel;
-	int					endian;
-}					t_mlx;
+	unsigned int	win_width;
+	unsigned int	win_height;
+	int				screen_width;
+	int				screen_height;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*img_ptr;
+	int				*data;
+	int				size_line;
+	int				bits_per_pixel;
+	int				endian;
+}				t_mlx;
+
+typedef struct	s_color
+{
+	float	r;
+	float	g;
+	float	b;
+}				t_color;
 
 /*
 ** mlx_utils.c
 */
 
+t_mlx	*get_mlx(void);
+t_color	get_color(float r, float g, float b);
 void	init_mlx(t_mlx *mlx);
-int		close_mlx(t_main *main);
-int		run_window(t_main *main);
+int		close_mlx(t_mlx *mlx);
+int		run_window(t_mlx *mlx);
 void	put_pixel(t_mlx *mlx, unsigned int x, unsigned int y, t_color color);
-t_bool	run_mlx(t_main *main);
+void	run_mlx(t_mlx *mlx);
 
 /*
 ** mlx_hooks.c
 */
 
-int		set_mlx_hooks(t_main *main);
-
+void		set_mlx_hooks(t_mlx *mlx);
 
 #endif

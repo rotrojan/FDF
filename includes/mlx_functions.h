@@ -22,7 +22,7 @@ void	init_mlx(t_mlx *mlx);
 int		close_mlx(t_main *main);
 int		run_window(t_main *main);
 void	put_pixel(t_mlx *mlx, unsigned int x, unsigned int y, t_color color);
-t_bool	run_mlx(t_main *main);
+t_t_t_bool	run_mlx(t_main *main);
 
 /*
 ** mlx_hooks.c
