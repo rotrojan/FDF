@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 22:26:17 by user42            #+#    #+#             */
-/*   Updated: 2021/08/28 03:43:13 by bigo             ###   ########.fr       */
+/*   Updated: 2021/08/28 19:12:27 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define TITLE "fdf"
 # define WIDTH 800 
-# define HEIGHT 600 
+# define HEIGHT 800 
 
 /*
 ** This structure contains all informations needed by the MLX. Even if a screen-
@@ -36,14 +36,30 @@ typedef struct s_mlx
 	int				size_line;
 	int				bits_per_pixel;
 	int				endian;
-}				t_mlx;
+}	t_mlx;
 
 typedef struct s_color
 {
 	float	r;
 	float	g;
 	float	b;
-}				t_color;
+}	t_color;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
+typedef struct s_bresenham
+{
+	int	diff_x;
+	int	diff_y;
+	int	err;
+	int	err_times_two;
+	int slope_x;
+	int slope_y;
+}	t_bresenham;
 
 /*
 ** mlx_utils.c
