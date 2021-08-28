@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/08/25 15:25:45 by bigo             ###   ########.fr        #
+#    Updated: 2021/08/28 00:49:23 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ LIBS = ft
 
 MLX_DIR = minilibx-linux
 
-CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/ -I $(MLX_DIR)
+CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/ -I $(MLX_DIR) -g3
 LDFLAGS = -L libft/ -lft -L $(MLX_DIR) -lmlx -lXext -lX11
 
 vpath %.c $(addprefix $(SRCS_DIR), /. /mlx)

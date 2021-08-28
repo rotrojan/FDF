@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 19:38:48 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/08/25 17:20:05 by bigo             ###   ########.fr       */
+/*   Updated: 2021/08/28 02:23:35 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # define READING_ERROR_MSG "The fdf file could not be read entirely"
 # define MALLOC_ERROR_MSG "Malloc failure"
 # define MAP_ERROR_MSG "Map not well formatted"
+# define MLX_INIT_ERROR_MSG "Could not establish connexion with the X server"
+# define MLX_WIN_ERROR_MSG "Could not create a new window"
+# define MLX_IMG_ERROR_MSG "Could not create a new image"
 
 typedef enum e_error
 {
@@ -30,9 +33,12 @@ typedef enum e_error
 	READ_ERROR,
 	READING_ERROR,
 	MALLOC_ERROR,
-	MAP_ERROR
+	MAP_ERROR,
+	MLX_INIT_ERROR,
+	MLX_WIN_ERROR,
+	MLX_IMG_ERROR
 }	t_error;
 
-int	return_error(t_error error);
+void	display_error(t_error error);
 
 #endif

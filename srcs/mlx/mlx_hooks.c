@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:26:38 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/08/27 18:36:55 by bigo             ###   ########.fr       */
+/*   Updated: 2021/08/28 03:20:04 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	key_hook(int key, t_mlx *mlx)
 ** "documentation" ... and try not to cry.
 */
 
-void			set_mlx_hooks(t_mlx *mlx)
+void	set_mlx_hooks(t_mlx *mlx)
 {
 	mlx_hook(mlx->win_ptr, ClientMessage, StructureNotifyMask, &close_mlx, mlx);
 	mlx_hook(mlx->win_ptr, VisibilityNotify, VisibilityChangeMask, &run_window,

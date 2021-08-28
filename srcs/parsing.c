@@ -6,13 +6,13 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 20:10:27 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 19:42:43 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/28 03:05:42 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	*get_map_line(char *map_line_str, unsigned int width)
+static int	*get_map_line(char *map_line_str, unsigned int width)
 {
 	int				*map_line;
 	unsigned int	i;
@@ -36,7 +36,7 @@ int	*get_map_line(char *map_line_str, unsigned int width)
 	return (map_line);
 }
 
-t_map	*get_map(char **map_str_array, t_map *map)
+static t_map	*get_map(char **map_str_array, t_map *map)
 {
 	unsigned int	i;
 
@@ -53,7 +53,7 @@ t_map	*get_map(char **map_str_array, t_map *map)
 	return (map);
 }
 
-char	*read_map(int fd)
+static char	*read_map(int fd)
 {
 	int		ret_gnl;
 	char	*map_str;
