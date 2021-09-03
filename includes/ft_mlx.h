@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 22:26:17 by user42            #+#    #+#             */
-/*   Updated: 2021/08/28 19:12:27 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/02 14:02:13 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FT_MLX_H
 
 # define TITLE "fdf"
-# define WIDTH 800 
-# define HEIGHT 800 
+# define WIDTH 1900 
+# define HEIGHT 1200 
 
 /*
 ** This structure contains all informations needed by the MLX. Even if a screen-
@@ -25,17 +25,17 @@
 
 typedef struct s_mlx
 {
-	unsigned int	win_width;
-	unsigned int	win_height;
-	int				screen_width;
-	int				screen_height;
-	void			*mlx_ptr;
-	void			*win_ptr;
-	void			*img_ptr;
-	int				*data;
-	int				size_line;
-	int				bits_per_pixel;
-	int				endian;
+	int		win_width;
+	int		win_height;
+	int		screen_width;
+	int		screen_height;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
+	int		*data;
+	int		size_line;
+	int		bits_per_pixel;
+	int		endian;
 }	t_mlx;
 
 typedef struct s_color
@@ -70,7 +70,7 @@ t_color	get_color(float r, float g, float b);
 t_error	init_mlx(t_mlx *mlx);
 int		close_mlx(t_mlx *mlx);
 int		run_window(t_mlx *mlx);
-void	put_pixel(t_mlx *mlx, unsigned int x, unsigned int y, t_color color);
+void	put_pixel(t_mlx *mlx, int x, int y, t_color color);
 
 /*
 ** mlx_hooks.c

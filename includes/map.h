@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:30:23 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/07 17:22:41 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/09/01 16:44:54 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 
 typedef struct s_map
 {
-	int				**data;
-	unsigned int	height;
-	unsigned int	width;
+	int	**data;
+	int	height;
+	int	width;
 
 }	t_map;
+
+t_map	*get_map(void);
 
 #endif

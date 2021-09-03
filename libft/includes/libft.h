@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:04:05 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/06 22:14:04 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/09/01 16:33:19 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			ft_memdel(void **ptr);
 ** Others.
 */
 
-unsigned int	count_words(char const *str, char *charset);
+int	count_words(char const *str, char *charset);
 int				is_charset(int c, char const *str);
 
 /*

@@ -6,13 +6,13 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 19:17:39 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/06 20:45:30 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/09/01 16:33:09 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	count_words(char const *str, char *charset)
+int	count_words(char const *str, char *charset)
 {
 	int	nb_words;
 	int	state_in_word;

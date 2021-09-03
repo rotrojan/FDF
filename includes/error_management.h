@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 19:38:48 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/08/28 02:23:35 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/01 18:50:07 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ typedef enum e_error
 }	t_error;
 
 void	display_error(t_error error);
+int		return_error(t_error error);
 
 #endif

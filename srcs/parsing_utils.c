@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 20:10:27 by user42            #+#    #+#             */
-/*   Updated: 2021/08/25 11:46:16 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/01 16:31:07 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static t_bool	check_line(char const *line)
 
 t_bool	check_map(char **map_str_array, t_map *map)
 {
-	unsigned int	i;
+	int	i;
 
 	while (map_str_array[map->height] != NULL)
 		++map->height;

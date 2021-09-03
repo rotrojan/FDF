@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:49:05 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/08/28 02:23:33 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/01 18:50:04 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ void	display_error(t_error error)
 
 	if (error != NO_ERROR)
 		ft_dprintf(STDERR_FILENO, "Error\n%s\n", error_messages[error]);
+}
+
+int	return_error(t_error error)
+{
+	display_error(error);
+	return (EXIT_FAILURE);
 }

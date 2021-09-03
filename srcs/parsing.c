@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 20:10:27 by user42            #+#    #+#             */
-/*   Updated: 2021/08/28 03:05:42 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/02 21:49:59 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	*get_map_line(char *map_line_str, unsigned int width)
 	j = 0;
 	while (i < width)
 	{
-		map_line[i] = ft_atoi(&map_line_str[i]);
+		map_line[i] = ft_atoi(&map_line_str[j]);
 		while (ft_isspace(map_line_str[j]) == 1 && map_line_str[j] != '\0')
 			++j;
 		while (ft_isspace(map_line_str[j]) == 0 && map_line_str[j] != '\0')
@@ -36,9 +36,9 @@ static int	*get_map_line(char *map_line_str, unsigned int width)
 	return (map_line);
 }
 
-static t_map	*get_map(char **map_str_array, t_map *map)
+static t_map	*get_map_to_parse(char **map_str_array, t_map *map)
 {
-	unsigned int	i;
+	int	i;
 
 	map->data = NULL;
 	map->data = malloc(sizeof(*map) * map->height);
@@ -92,7 +92,7 @@ t_error	parse_map(int fd, t_map *map)
 		free_array(((void **)map_str_array));
 		return (MAP_ERROR);
 	}
-	map = get_map(map_str_array, map);
+	map = get_map_to_parse(map_str_array, map);
 	free_array(((void **)map_str_array));
 	if (map == NULL)
 		return (MALLOC_ERROR);

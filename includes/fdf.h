@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 19:38:48 by user42            #+#    #+#             */
-/*   Updated: 2021/08/28 17:21:46 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/01 18:50:32 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	destructor(void) __attribute__((destructor));
 ** display_projection.c
 */
 
-void	display_projection(t_map *map, t_mlx *mlx);
+t_bool	display_projection(t_map *map, t_mlx *mlx);
 
 /*
 ** drawing_utils.c
 */
 
-t_point	get_point(unsigned int x, unsigned int y);
+t_point	get_point(int x, int y);
 void	bresenham(t_point a, t_point b, t_color, t_mlx *mlx);
 
 #endif

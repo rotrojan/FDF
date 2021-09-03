@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:02:29 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/08/28 02:04:34 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/01 16:33:41 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_array(void **array)
 
 void	free_map(t_map *map)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	while (i < map->height)
