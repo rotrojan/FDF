@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:02:29 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/09/01 16:33:41 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/03 21:00:48 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	free_map(t_map *map)
 {
 	int	i;
 
+	if (map->data == NULL)
+		return ;
 	i = 0;
 	while (i < map->height)
 	{
