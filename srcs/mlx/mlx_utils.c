@@ -6,11 +6,18 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 22:03:11 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/08/28 14:58:32 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/05 21:19:18 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+t_mlx	*get_mlx(void)
+{
+	static t_mlx	mlx = {0};
+
+	return (&mlx);
+}
 
 int	run_window(t_mlx *mlx)
 {
@@ -18,10 +25,12 @@ int	run_window(t_mlx *mlx)
 	return (EXIT_SUCCESS);
 }
 
-int	close_mlx(t_mlx *mlx)
+int	close_mlx(void)
 {
 	int		ret;
+	t_mlx	*mlx;
 
+	mlx = get_mlx();
 	ret = EXIT_FAILURE;
 	if (mlx->mlx_ptr != NULL)
 	{
@@ -42,8 +51,11 @@ int	close_mlx(t_mlx *mlx)
 	return (EXIT_FAILURE);
 }
 
-t_error	init_mlx(t_mlx *mlx)
+t_error	init_mlx(void)
 {
+	t_mlx	*mlx;
+
+	mlx = get_mlx();
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
 		return (MLX_INIT_ERROR);

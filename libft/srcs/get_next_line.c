@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:23:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/06 21:47:40 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/09/05 02:42:01 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*ft_append_char(char *str, char c)
 	while (str[i])
 	{
 		if (ft_isprint(str[i]) == 0 && ft_isspace(str[i]) == 0)
-			free_and_return_null(&str, &str_new);
+			return (free_and_return_null(&str, &str_new));
 		str_new[i] = str[i];
 		i++;
 	}

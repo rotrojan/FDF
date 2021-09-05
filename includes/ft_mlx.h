@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 22:26:17 by user42            #+#    #+#             */
-/*   Updated: 2021/09/03 20:51:48 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/09/05 23:47:38 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ typedef struct s_bresenham
 */
 
 t_mlx	*get_mlx(void);
+int	run_window(t_mlx *mlx);
 t_color	get_color(float r, float g, float b);
-t_error	init_mlx(t_mlx *mlx);
-int		close_mlx(t_mlx *mlx);
-int		run_window(t_mlx *mlx);
+t_error	init_mlx(void);
+int		close_mlx(void);
 void	put_pixel(t_mlx *mlx, int x, int y, t_color color);
 
 /*

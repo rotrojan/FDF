@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/09/03 21:02:20 by rotrojan         ###   ########.fr        #
+#    Updated: 2021/09/05 15:01:32 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ LIBS = ft
 
 MLX_DIR = minilibx-linux
 
-CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/ -I $(MLX_DIR)# -g3
-LDFLAGS = -L libft/ -lft -L $(MLX_DIR) -lm -lmlx -lXext -lX11# -fsanitize=address
+CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/ -I $(MLX_DIR) -g3
+LDFLAGS = -L libft/ -lft -L $(MLX_DIR) -lm -lmlx -lXext -lX11 -fsanitize=address
 
 vpath %.c $(addprefix $(SRCS_DIR), /. /mlx)
 vpath %.a $(LIBS:%=lib%) minilibx-$(MLX_DIR)
