@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 19:42:15 by user42            #+#    #+#             */
-/*   Updated: 2021/09/05 23:45:51 by bigo             ###   ########.fr       */
+/*   Updated: 2021/09/06 13:40:31 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ t_map	*get_map(void)
 
 void	destructor(void)
 {
-	t_map *map;
+	t_map	*map;
+	t_point	***transformed_map;
 
 	map = get_map();
-	free_transformed_map(get_transformed_map(), map->height);
+	transformed_map = get_transformed_map();
+	if (*transformed_map != NULL)
+		free_transformed_map(get_transformed_map(), map->height);
 	free_map(get_map());
 }
 
